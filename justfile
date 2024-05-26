@@ -1,0 +1,2 @@
+d:
+  nix develop

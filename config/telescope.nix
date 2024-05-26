@@ -6,6 +6,10 @@
     extensions.fzf-native.enable = true;
 
     keymaps = {
+      "<leader>?" = {
+        action = "oldfiles";
+        desc = "[?] Find recently opened files";
+      };
       "<leader>sf" = {
         action = "find_files";
         desc = "[s]earch [f]iles";
