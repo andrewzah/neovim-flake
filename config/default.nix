@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./keymaps.nix
+    ./completion.nix
     ./lint.nix
     ./lsp.nix
     ./style.nix
