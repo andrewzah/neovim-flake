@@ -70,13 +70,18 @@
       undotree.enable = true;
     };
 
-    extraPlugins = with pkgs; [
-      ansible-lint
+    extraPackages = with pkgs; [
+      ansible
+      ansible-language-server
       go
+      gofumpt
       golangci-lint
       golines
       gotools
       hadolint
+      luajitPackages.luacheck
+      markdownlint-cli
+      nodePackages.jsonlint
       python3
       ripgrep
       ruff

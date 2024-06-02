@@ -95,20 +95,62 @@
       		},
       	}
 
-      	for _, bind in ipairs(lsp_keybinds) do
-      		vim.keymap.set("n", bind.key, bind.action, bind.options)
-      	end
+        for _, bind in ipairs(lsp_keybinds) do
+          vim.keymap.set("n", bind.key, bind.action, bind.options)
+        end
       end
 
       -- Additional lsp-config
       local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
       capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+      -- ansible LSP
+      require("lspconfig").ansiblels.setup({
+        on_attach = function()
+          set_cmn_lsp_keybinds()
+        end,
+      })
+
+      -- golang lsp
+      require("lspconfig").gopls.setup({
+        on_attach = function()
+          set_cmn_lsp_keybinds()
+        end,
+      })
+
+      -- JSON lsp
+      require("lspconfig").jsonls.setup({
+        on_attach = function()
+          set_cmn_lsp_keybinds()
+        end,
+      })
+
+      -- Lua LSP
+      require("lspconfig").lua_ls.setup({
+        on_attach = function()
+          set_cmn_lsp_keybinds()
+        end,
+      })
+
+      -- Markdown LSP
+      require("lspconfig").marksman.setup({
+        on_attach = function()
+          set_cmn_lsp_keybinds()
+        end,
+      })
+
+      -- Nix LSP
+      require("lspconfig").nil_ls.setup({
+        on_attach = function()
+          set_cmn_lsp_keybinds()
+        end,
+      })
+
       -- Python LSP
       require("lspconfig").ruff_lsp.setup({
-      	on_attach = function()
-      		set_cmn_lsp_keybinds()
-      	end,
+        on_attach = function()
+          set_cmn_lsp_keybinds()
+        end,
       })
 
        -- Rust LSP
@@ -123,6 +165,13 @@
             },
           },
         },
+        on_attach = function()
+          set_cmn_lsp_keybinds()
+        end,
+      })
+
+      -- Typescript/Javascript LSP
+      require("lspconfig").tsserver.setup({
         on_attach = function()
           set_cmn_lsp_keybinds()
         end,
