@@ -73,6 +73,7 @@
     extraPackages = with pkgs; [
       ansible
       ansible-language-server
+      commitlint
       go
       gofumpt
       golangci-lint
@@ -81,6 +82,7 @@
       hadolint
       luajitPackages.luacheck
       markdownlint-cli
+      nil
       nodePackages.jsonlint
       python3
       ripgrep
