@@ -135,6 +135,9 @@
       -- Markdown LSP
       require("lspconfig").marksman.setup({
         on_attach = function()
+          root_dir = function(fname)
+            return '/tmp'
+          end,
           set_cmn_lsp_keybinds()
         end,
       })

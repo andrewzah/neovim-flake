@@ -13,7 +13,7 @@
       mapleader = " ";
     };
 
-    options = {
+    opts = {
       autoindent = true;
       backspace = "indent,eol,start";
       smartcase = true;

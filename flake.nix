@@ -3,10 +3,9 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixvim.url = "github:nix-community/nixvim/9f7c78852f37126244b43e71e5158cdc3d70ad0a";
+    nixvim.url = "github:nix-community/nixvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
-  #inputs.nixpkgs.follows = "nixpkgs";
 
   outputs = {
     self,
@@ -25,11 +24,14 @@
         "aarch64-darwin"
       ];
 
-      perSystem = {
-        pkgs,
-        system,
-        ...
-      }: let
+      perSystem = { system, ... }: let
+        nixpkgsWithConfig = import nixpkgs {
+          config = {
+            allowUnfree = true;
+          };
+          inherit system;
+        };
+        pkgs = nixpkgsWithConfig;
         nixvimLib = nixvim.lib.${system};
         nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule {
           inherit pkgs;
@@ -53,7 +55,7 @@
             PS1="Nixvim: \\w \$ "
             alias vim='nvim'
           '';
-          packages = with pkgs; [
+          packages = [
             nvim
           ];
         };
