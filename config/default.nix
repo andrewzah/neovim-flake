@@ -14,6 +14,7 @@
     };
 
     opts = {
+      background = "light"; 
       autoindent = true;
       backspace = "indent,eol,start";
       smartcase = true;
