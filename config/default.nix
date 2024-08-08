@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./autocmds.nix
     ./keymaps.nix
     ./completion.nix
     ./lint.nix
@@ -72,6 +73,7 @@
     };
 
     extraPackages = with pkgs; [
+      alejandra
       ansible
       ansible-language-server
       commitlint
@@ -83,7 +85,7 @@
       hadolint
       luajitPackages.luacheck
       markdownlint-cli
-      nil
+      nixd
       nodePackages.jsonlint
       python3
       ripgrep

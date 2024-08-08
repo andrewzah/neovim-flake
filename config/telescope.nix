@@ -11,9 +11,8 @@
         options.desc = "[?] Find recently opened files";
       };
 
-      "<leader>sf" = {
+      "<C-p>" = {
         action = "find_files";
-        options.desc = "[s]earch [f]iles";
       };
     };
   };

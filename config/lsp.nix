@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   ...
 }: {
   plugins.rust-tools.enable = true;
@@ -143,7 +142,7 @@
       })
 
       -- Nix LSP
-      require("lspconfig").nil_ls.setup({
+      require("lspconfig").nixd.setup({
         on_attach = function()
           set_cmn_lsp_keybinds()
         end,
