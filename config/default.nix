@@ -1,4 +1,5 @@
-{pkgs, lib, ... }: {
+{ lib, ... }:
+{
   imports = [
     ./autocmds.nix
     ./keymaps.nix
@@ -10,10 +11,11 @@
     ./config.nix
   ];
 
-  options.services.neovim-flake = {
+  options.programs.neovim-flake = {
     background = lib.mkOption {
       type = lib.types.str;
       default = "dark";
+      description = "set the background to dark or light";
     };
   };
 }
