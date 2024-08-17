@@ -10,12 +10,4 @@
     ./telescope.nix
     ./config.nix
   ];
-
-  options.programs.neovim-flake = {
-    background = lib.mkOption {
-      type = lib.types.str;
-      default = "dark";
-      description = "set the background to dark or light";
-    };
-  };
 }

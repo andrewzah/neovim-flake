@@ -1,7 +1,4 @@
-{  pkgs, config, ... }:
-let
-  cfg = config.programs.neovim-flake;
-in
+{  pkgs, ... }:
 {
   config = {
     globals = {
@@ -9,7 +6,7 @@ in
     };
 
     opts = {
-      background = cfg.background;
+      background = "dark";
       autoindent = true;
       backspace = "indent,eol,start";
       smartcase = true;
