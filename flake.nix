@@ -1,43 +1,40 @@
 {
-  description = "Andrews nixvim configuration";
+  description = "NeoVim flake by Andrew Zah";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixvim.url = "github:nix-community/nixvim";
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixvim,
-    flake-parts,
-    ...
-  } @ inputs: let
-    config = import ./config;
+  outputs = { nixpkgs, nixvim, flake-utils, ... } @ inputs:
+  let
+    config = import ./modules;
   in
-    flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = [
-        "x86_64-linux"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "aarch64-darwin"
-      ];
-
-      perSystem = { system, ... }: let
-        nixpkgsWithConfig = import nixpkgs {
-          config = {
-            allowUnfree = true;
+  flake-utils.lib.eachDefaultSystem(system:
+    let
+      nixpkgsWithConfig = import nixpkgs {
+        config = {
+          allowUnfree = true;
+        };
+        inherit system;
+      };
+      pkgs = nixpkgsWithConfig;
+      nixvimLib = nixvim.lib.${system};
+      nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule {
+        inherit pkgs;
+        module = config;
+      };
+      in rec {
+        apps = {
+          nvim = {
+            type = "app";
+            program = "${packages.default}/bin/nvim";
           };
-          inherit system;
+
+          default = nvim;
         };
-        pkgs = nixpkgsWithConfig;
-        nixvimLib = nixvim.lib.${system};
-        nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule {
-          inherit pkgs;
-          module = config;
-        };
-      in {
+
         checks = {
           default = nixvimLib.check.mkTestDerivationFromNvim {
             inherit nvim;
@@ -49,6 +46,12 @@
           default = nvim;
         };
 
+        homeManagerModules.default = {
+          imports = [ ./lib/hm.nix ];
+        };
+        nixosModules.hm =
+          pkgs.lib.warn "nixosModules.hm is deprecated; use HomeManagerModules.default instead." homeManagerModules.default;
+
         devShells.default = pkgs.mkShellNoCC {
           shellHook = ''
             echo Welcome to a Neovim dev environment powered by Nixvim -- https://github.com/nix-community/nixvim
@@ -59,6 +62,5 @@
             nvim
           ];
         };
-      };
-    };
+      });
 }

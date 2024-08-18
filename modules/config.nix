@@ -1,12 +1,13 @@
-{  pkgs, ... }:
+{  pkgs, config, ... }:
+let
+  cfg = config.programs.neovim-flake;
+in
 {
   config = {
-    globals = {
-      mapleader = " ";
-    };
+    globals.mapleader = " ";
 
     opts = {
-      background = "dark";
+      background = cfg.background;
       autoindent = true;
       backspace = "indent,eol,start";
       smartcase = true;
