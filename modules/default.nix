@@ -2,13 +2,13 @@
 {
   imports = [
     ./autocmds.nix
-    ./keymaps.nix
     ./completion.nix
+    ./config.nix
+    ./keymaps.nix
     ./lint.nix
     ./lsp.nix
     ./style.nix
     ./telescope.nix
-    ./config.nix
   ];
 
   options.programs.neovim-flake = {

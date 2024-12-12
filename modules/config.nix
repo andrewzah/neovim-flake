@@ -1,6 +1,7 @@
 {  pkgs, config, ... }:
 let
   cfg = config.programs.neovim-flake;
+  grammars = pkgs.vimPlugins.nvim-treesitter.builtGrammars;
 in
 {
   config = {
@@ -62,6 +63,19 @@ in
       oil.enable = true;
       trouble.enable = true;
       undotree.enable = true;
+
+      treesitter = {
+        enable = true;
+        grammarPackages = (with grammars; [
+          json
+          lua
+          gleam
+          nix
+          toml
+          xml
+          yaml
+        ]);
+      };
     };
 
     extraPackages = with pkgs; [
@@ -69,12 +83,15 @@ in
       ansible
       ansible-language-server
       commitlint
+      gleam
+      glsl_analyzer
       go
       gofumpt
       golangci-lint
       golines
       gotools
       hadolint
+      lua-language-server
       luajitPackages.luacheck
       markdownlint-cli
       nixd
