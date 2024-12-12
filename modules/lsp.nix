@@ -166,7 +166,10 @@ in {
       })
 
       -- Lua
-      require'lspconfig'.lua_ls.setup {
+      require'lspconfig'.lua_ls.setup({
+        root_dir = function(fname)
+          return vim.loop.cwd()
+        end,
         on_init = function(client)
           if client.workspace_folders then
             local path = client.workspace_folders[1].name
@@ -179,22 +182,19 @@ in {
             runtime = {
               version = 'LuaJIT'
             },
-            -- Make the server aware of Neovim runtime files
             workspace = {
               checkThirdParty = false,
               library = {
                 vim.env.VIMRUNTIME,
-                "${pkgs.lua-language-server}/share/lua-language-server/meta/3rd/love2d/library"
+                "''${3rd}/love2d/library",
               }
-              -- or pull in all of 'runtimepath'. NOTE: this is a lot slower and will cause issues when working on your own configuration (see https://github.com/neovim/nvim-lspconfig/issues/3189)
-              --library = vim.api.nvim_get_runtime_file("", true)
             }
           })
         end,
         settings = {
           Lua = {}
         }
-      }
+      })
 
       -- Markdown LSP
       require("lspconfig").marksman.setup({
