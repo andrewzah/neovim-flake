@@ -1,17 +1,7 @@
 {
   pkgs,
   ...
-}: let
-  love2d-nvim = pkgs.vimUtils.buildVimPlugin rec {
-    name = "love2d-nvim";
-    version = "0.2";
-
-    src = pkgs.fetchzip {
-      url = "https://github.com/S1M0N38/love2d.nvim/archive/refs/tags/v${version}.zip";
-      hash = "sha256-/OneGugGHM5Fohy/X+UDweuz45OL3YiFjXgjJiQ3BFA=";
-    };
-  };
-in {
+}: {
   #plugins.rustaceanvim.enable = true;
   plugins.lsp = {
     servers = {
@@ -50,9 +40,7 @@ in {
   extraPlugins = (with pkgs.vimPlugins; [
     nvim-lspconfig
     typescript-tools-nvim
-  ]) ++ [
-    love2d-nvim
-  ];
+  ]);
 
   extraConfigLua = ''
       -- Extra nvim-lspconfig configuration
@@ -166,7 +154,7 @@ in {
       })
 
       -- Lua
-      require'lspconfig'.lua_ls.setup({
+      require("lspconfig").lua_ls.setup({
         root_dir = function(fname)
           return vim.loop.cwd()
         end,
