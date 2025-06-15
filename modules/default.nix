@@ -1,5 +1,6 @@
-{...}: {
+{lib, ...}: {
   imports = [
+    ./autocmds.nix
     ./keymaps.nix
     ./lsp-autocomplete.nix
     ./plugins.nix
