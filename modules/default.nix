@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
     ./keymaps.nix
     ./lsp-autocomplete.nix
@@ -11,14 +11,58 @@
     globals = {
       mapleader = " ";
       maplocalleader = ",";
+      number = true;
+      relativenumber = true;
+      softtabstop = 2;
+      expandtab = true;
+      list = true;
+      listchars = "trail:¬,precedes:«,extends:»,tab:→⋅";
+      wrap = false;
+      swapfile = false;
+      backup = false;
+      undofile = true;
+      hlsearch = false;
+      incsearch = true;
+      scrolloff = 8;
+      signcolumn = "yes";
+      updatetime = 50;
+      foldlevelstart = 99;
+      breakindent = true;
+      completeopt = "menu,menuone,noselect";
+    };
+    options = {
+      termguicolors = true;
+      colorcolumn = "80";
+      cursorcolumn = true;
+      autoindent = true;
+      backspace = "indent,eol,start";
+      smartcase = true;
+      smartindent = true;
+      smarttab = true;
+      ignorecase = true;
+      shiftwidth = 2;
+      shiftround = true;
+      tabstop = 2;
     };
     lineNumberMode = "relNumber";
 
+    clipboard = {
+      enable = true;
+      providers.xclip.enable = true;
+      registers = "unnamedplus";
+    };
+
+    comments.comment-nvim.enable = true;
+
     lazy.enable = true;
 
-    ui.noice.enable = true;
-    ui.noice.setupOpts.lsp.signature.enabled = true;
-    ui.borders.plugins.lsp-signature.enable = true;
+    ui = {
+      noice.enable = true;
+      noice.setupOpts.lsp.signature.enabled = true;
+      borders.plugins.lsp-signature.enable = true;
+    };
+    visuals.nvim-cursorline.enable = true;
+    visuals.nvim-cursorline.setupOpts.cursorword.enable = true;
 
     languages = {
       enableFormat = true;
