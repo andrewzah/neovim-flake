@@ -1,32 +1,21 @@
-{...}: {
-  keymaps = [
-    {
-      key = "<C-d>";
-      mode = "n";
-      action = "<C-d>zz"; # keep cursor in middle
-      options.silent = true;
-      options.noremap = true;
-    }
-    {
-      key = "<C-u>";
-      mode = "n";
-      action = "<C-u>zz"; # keep cursor in middle
-      options.silent = true;
-      options.noremap = true;
-    }
-    {
-      key = "<Leader>bd";
-      mode = "n";
-      action = "<cmd>set background=dark<CR>";
-      options.silent = true;
-      options.noremap = true;
-    }
-    {
-      key = "<Leader>bl";
-      mode = "n";
-      action = "<cmd>set background=light<CR>";
-      options.silent = true;
-      options.noremap = true;
-    }
-  ];
+{...}: let
+  mkKeymap = mode: key: action: {
+    inherit mode key action ;
+    silent = true;
+    noremap = true;
+  };
+in {
+  config.vim = {
+    keymaps = [
+      (mkKeymap "n" " " "<Nop>")
+      (mkKeymap "n" "<C-d>" "<C-d>zz")
+      (mkKeymap "n" "<C-u>" "<C-u>zz")
+      (mkKeymap "n" "<Leader>bd" "<cmd>set background=dark<CR>")
+      (mkKeymap "n" "<Leader>bl" "<cmd>set background=light<CR>")
+      (mkKeymap "n" "<Leader>dn" "<cmd>lua vim.diagnostic.goto_next()<CR>")
+      (mkKeymap "n" "<Leader>dp" "<cmd>lua vim.diagnostic.goto_prev()<CR>")
+      (mkKeymap "n" "<Leader>dv" "<cmd>lua vim.diagnostic.open_float()<CR>")
+      (mkKeymap "n" "<Leader>xx" "<cmd>Trouble diagnostics toggle<CR>")
+    ];
+  };
 }

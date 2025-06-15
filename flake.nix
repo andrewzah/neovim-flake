@@ -1,66 +1,31 @@
 {
-  description = "NeoVim flake by Andrew Zah";
+  description = "nvf neovim flake";
 
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    nixvim.url = "github:nix-community/nixvim";
-    flake-utils.url = "github:numtide/flake-utils";
+  outputs = { nixpkgs, ... } @ inputs: let
+    pkgs = nixpkgs.legacyPackages.x86_64-linux;
+
+    nvim = (inputs.nvf.lib.neovimConfiguration {
+      inherit pkgs;
+      modules = [
+        ./modules/default.nix
+      ];
+    }).neovim;
+  in {
+    packages.x86_64-linux.default = nvim;
+
+    devShells.x86_64-linux.default = pkgs.mkShellNoCC {
+      shellHook = ''
+        alias j='just'
+        alias v='${nvim}/bin/nvim'
+        echo 'devshell for testing nvf neovim loaded.'
+      '';
+      packages = [nvim];
+    };
   };
 
-  outputs = { nixpkgs, nixvim, flake-utils, ... } @ inputs:
-  let
-    config = import ./modules;
-  in
-  flake-utils.lib.eachDefaultSystem(system:
-    let
-      nixpkgsWithConfig = import nixpkgs {
-        config = {
-          allowUnfree = true;
-        };
-        inherit system;
-      };
-      pkgs = nixpkgsWithConfig;
-      nixvimLib = nixvim.lib.${system};
-      nvim = nixvim.legacyPackages.${system}.makeNixvimWithModule {
-        inherit pkgs;
-        module = config;
-      };
-      in rec {
-        apps = {
-          nvim = {
-            type = "app";
-            program = "${packages.default}/bin/nvim";
-          };
-
-          default = nvim;
-        };
-
-        checks = {
-          default = nixvimLib.check.mkTestDerivationFromNvim {
-            inherit nvim;
-            name = "Andrews nixvim configuration";
-          };
-        };
-
-        packages = {
-          default = nvim;
-        };
-
-        homeManagerModules.default = {
-          imports = [ ./lib/hm.nix ];
-        };
-        nixosModules.hm =
-          pkgs.lib.warn "nixosModules.hm is deprecated; use HomeManagerModules.default instead." homeManagerModules.default;
-
-        devShells.default = pkgs.mkShellNoCC {
-          shellHook = ''
-            echo Welcome to a Neovim dev environment powered by Nixvim -- https://github.com/nix-community/nixvim
-            PS1="Nixvim: \\w \$ "
-            alias vim='nvim'
-          '';
-          packages = [
-            nvim
-          ];
-        };
-      });
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nvf.url = "github:notashelf/nvf";
+  };
 }
+
