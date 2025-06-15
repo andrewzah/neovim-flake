@@ -1,16 +1,22 @@
 {
   description = "nvf neovim flake";
 
-  outputs = { nixpkgs, ... } @ inputs: let
+  outputs = {nixpkgs, ...} @ inputs: let
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
 
-    nvim = (inputs.nvf.lib.neovimConfiguration {
-      inherit pkgs;
-      modules = [
-        ./modules/default.nix
-      ];
-    }).neovim;
+    nvim =
+      (inputs.nvf.lib.neovimConfiguration {
+        inherit pkgs;
+        modules = [
+          ./modules/default.nix
+        ];
+      }).neovim;
   in {
+    apps.x86_64-linux.default = {
+      type = "app";
+      program = "${nvim}/bin/nvim";
+    };
+
     packages.x86_64-linux.default = nvim;
 
     devShells.x86_64-linux.default = pkgs.mkShellNoCC {
@@ -28,4 +34,3 @@
     nvf.url = "github:notashelf/nvf";
   };
 }
-
