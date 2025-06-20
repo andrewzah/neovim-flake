@@ -1,5 +1,7 @@
 {pkgs, ...}: {
   config.vim = {
+    autopairs.nvim-autopairs.enable = true;
+
     telescope = {
       enable = true;
       extensions = [

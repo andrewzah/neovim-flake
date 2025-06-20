@@ -2,13 +2,16 @@
   config.vim = {
     treesitter.enable = true;
 
-    autocomplete.blink-cmp.enable = true;
-    autocomplete.blink-cmp.setupOpts.signature.enabled = true;
-    autocomplete.blink-cmp.setupOpts.keymap = {
-      preset = "none";
-      "<C-p>" = ["select_prev" "fallback"];
-      "<C-n>" = ["select_next" "fallback"];
-      "<C-e>" = ["show" "hide"];
+    autocomplete = {
+      blink-cmp.enable = true;
+      blink-cmp.setupOpts.signature.enabled = true;
+      blink-cmp.setupOpts.keymap = {
+        preset = "none";
+        "<C-p>" = ["select_prev" "fallback"];
+        "<C-n>" = ["select_next" "fallback"];
+        "<C-e>" = ["show" "hide"];
+      };
+      blink-cmp.friendly-snippets.enable = true;
     };
 
     lsp = {
@@ -35,6 +38,5 @@
         border = "rounded";
       };
     };
-
   };
 }

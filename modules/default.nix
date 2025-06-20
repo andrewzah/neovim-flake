@@ -7,7 +7,9 @@
     ./style.nix
   ];
 
+  # https://neovim.io/doc/user/lsp.html
   # https://notashelf.github.io/nvf/options.html
+
   config.vim = {
     globals = {
       mapleader = " ";
@@ -64,6 +66,11 @@
     };
     visuals.nvim-cursorline.enable = true;
     visuals.nvim-cursorline.setupOpts.cursorword.enable = true;
+    visuals.highlight-undo.enable = true;
+
+    treesitter.enable = true;
+
+    #debugger.nvim-dap.enable = true;
 
     languages = {
       enableFormat = true;
