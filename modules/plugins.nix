@@ -13,5 +13,12 @@
       ];
       mappings.findFiles = "<C-p>";
     };
+
+    utility.preview.markdownPreview = {
+      enable = true;
+      lazyRefresh = true;
+    };
+
+    utility.ccc.enable = true;
   };
 }

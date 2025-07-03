@@ -5,6 +5,7 @@
     ./lsp-autocomplete.nix
     ./plugins.nix
     ./style.nix
+    ./debugging.nix
   ];
 
   # https://neovim.io/doc/user/lsp.html
@@ -70,11 +71,13 @@
 
     treesitter.enable = true;
 
-    #debugger.nvim-dap.enable = true;
+    undoFile.enable = true;
+    undoFile.path = lib.mkLuaInline "os.getenv('XDG_DATA_HOME') .. '/nvf/undo'";
 
     languages = {
       enableFormat = true;
       enableTreesitter = true;
+      enableDAP = true;
 
       bash.enable = true;
       bash.lsp.enable = true;

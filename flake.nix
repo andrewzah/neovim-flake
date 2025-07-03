@@ -21,8 +21,7 @@
 
     devShells.x86_64-linux.default = pkgs.mkShellNoCC {
       shellHook = ''
-        alias j='just'
-        alias v='${nvim}/bin/nvim'
+        alias vv='${nvim}/bin/nvim'
         echo 'devshell for testing nvf neovim loaded.'
       '';
       packages = [nvim];
@@ -31,6 +30,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    nvf.url = "github:notashelf/nvf";
+    #nvf.url = "github:notashelf/nvf";
+    nvf.url = "git+file:///home/dragon/opt/nvf";
   };
 }
