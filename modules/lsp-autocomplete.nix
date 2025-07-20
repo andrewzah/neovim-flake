@@ -16,6 +16,7 @@
 
     lsp = {
       enable = true;
+      lspconfig.enable = true;
       formatOnSave = true;
       inlayHints.enable = true;
       lightbulb.enable = true;

@@ -30,7 +30,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    #nvf.url = "github:notashelf/nvf";
-    nvf.url = "git+file:///home/dragon/opt/nvf";
+    nvf.url = "github:notashelf/nvf";
+    #nvf.url = "git+file:///home/dragon/opt/nvf";
   };
 }
