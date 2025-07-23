@@ -2,8 +2,9 @@
   config.vim = {
     theme = {
       enable = true;
-      name = "gruvbox"; # oxocarbon and onedark ain't bad
-      style = "dark";
+      name = "github"; # oxocarbon and onedark ain't bad
+      style = "dark_high_contrast"; # onedark->darker, oxocarbon->dark
+
       #palette_overrides = {
       #  #dark0 = "#1d2021";
       #  #dark1 = "#3c3836";
