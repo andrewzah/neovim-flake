@@ -1,9 +1,52 @@
-{...}: {
+{pkgs, ...}: {
   config.vim = {
+    extraPlugins = {
+      gruvbox = {
+        package = pkgs.vimPlugins.gruvbox-nvim;
+        setup = ''
+          require("gruvbox").setup({
+            terminal_colors = true, -- add neovim terminal colors
+            undercurl = true,
+            underline = true,
+            bold = true,
+            italic = {
+              strings = true,
+              emphasis = true,
+              comments = true,
+              operators = false,
+              folds = true,
+            },
+            strikethrough = true,
+            invert_selection = false,
+            invert_signs = false,
+            invert_tabline = false,
+            inverse = true, -- invert background for search, diffs, statuslines and errors
+            contrast = "hard", -- can be "hard", "soft" or empty string
+            palette_overrides = {},
+            overrides = {},
+            dim_inactive = false,
+            transparent_mode = false,
+          })
+        '';
+      };
+
+      tokyoNight = {
+        package = pkgs.vimPlugins.tokyonight-nvim;
+        setup = ''
+          require("tokyonight").setup({
+            style = "night",
+          })
+          vim.cmd[[colorscheme tokyonight]]
+          vim.o.background = "dark"
+        '';
+      };
+    };
+
     theme = {
-      enable = true;
-      name = "github"; # oxocarbon and onedark ain't bad
-      style = "dark_high_contrast"; # onedark->darker, oxocarbon->dark
+      #enable = true;
+      ## github:dark_high_contrast oxocarbon:dark onedark:darker cappuccin:mocha
+      #name = "onedark";
+      #style = "darker";
 
       #palette_overrides = {
       #  #dark0 = "#1d2021";

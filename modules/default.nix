@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./autocmds.nix
     ./keymaps.nix
@@ -34,6 +38,7 @@
       breakindent = true;
       completeopt = "menu,menuone,noselect";
     };
+
     options = {
       termguicolors = true;
       colorcolumn = "80";

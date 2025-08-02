@@ -4,12 +4,36 @@
     silent = true;
     noremap = true;
   };
+  mkKeymapLua = mode: key: action: {
+    inherit mode key action;
+    silent = true;
+    noremap = true;
+    lua = true;
+  };
 in {
   config.vim = {
     keymaps = [
       (mkKeymap "n" " " "<Nop>") # ??
-      (mkKeymap "n" "<Leader>bd" "<cmd>set background=dark<CR>")
-      (mkKeymap "n" "<Leader>bl" "<cmd>set background=light<CR>")
+
+      # color scheme
+      (mkKeymapLua "n" "<Leader>bdt" ''
+        function()
+          vim.cmd[[colorscheme tokyonight]]
+          vim.o.background = 'dark'
+        end
+      '')
+      (mkKeymapLua "n" "<Leader>bdg" ''
+        function()
+          vim.cmd[[colorscheme gruvbox]]
+          vim.o.background = 'dark'
+        end
+      '')
+      (mkKeymapLua "n" "<Leader>bl" ''
+        function()
+          vim.cmd([[colorscheme gruvbox]])
+          vim.o.background = 'light'
+        end
+      '')
 
       # keep at middle of screen after jump
       (mkKeymap "n" "<C-d>" "<C-d>zz")

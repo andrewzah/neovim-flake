@@ -25,7 +25,10 @@
     # https://github.com/code-biscuits/nvim-biscuits
     utility.nvim-biscuits.enable = true;
     utility.nvim-biscuits.setupOpts = {
-      "min_distance" = 10;
+      min_length = 20;
+      cursor_line_only = true;
+      toggle_keybind = "<leader>vb";
+      show_on_start = true;
     };
 
     mini.pairs.enable = true;
