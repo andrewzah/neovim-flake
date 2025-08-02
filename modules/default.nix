@@ -95,6 +95,7 @@
       lua.enable = true;
       markdown.enable = true;
       markdown.lsp.enable = true;
+      markdown.treesitter.enable = true;
       nix.enable = true;
       nix.lsp.enable = true;
       ruby.enable = true;
