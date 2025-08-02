@@ -81,9 +81,11 @@
 
       bash.enable = true;
       bash.lsp.enable = true;
+
       csharp.enable = true;
       csharp.lsp.enable = true;
       csharp.treesitter.enable = true;
+
       css.enable = true;
       css.format.type = "prettierd"; # https://github.com/NotAShelf/nvf/issues/943
       gleam.enable = true;

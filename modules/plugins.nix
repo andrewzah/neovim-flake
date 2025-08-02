@@ -1,7 +1,5 @@
 {pkgs, ...}: {
   config.vim = {
-    autopairs.nvim-autopairs.enable = true;
-
     telescope = {
       enable = true;
       extensions = [
@@ -19,6 +17,18 @@
       lazyRefresh = true;
     };
 
+    # highlights colors + color picker
+    # https://github.com/uga-rosa/ccc.nvim
     utility.ccc.enable = true;
+
+    # show the name of the current block at the end
+    # https://github.com/code-biscuits/nvim-biscuits
+    utility.nvim-biscuits.enable = true;
+    utility.nvim-biscuits.setupOpts = {
+      "min_distance" = 10;
+    };
+
+    mini.pairs.enable = true;
+    mini.files.enable = true;
   };
 }

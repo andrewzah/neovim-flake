@@ -15,6 +15,12 @@ in {
       (mkKeymap "n" "<C-d>" "<C-d>zz")
       (mkKeymap "n" "<C-u>" "<C-u>zz")
 
+      # splits
+      (mkKeymap "n" "<C-h>" "<C-w>h")
+      (mkKeymap "n" "<C-j>" "<C-w>j")
+      (mkKeymap "n" "<C-k>" "<C-w>k")
+      (mkKeymap "n" "<C-l>" "<C-w>l")
+
       # diagnostics / LSP
       (mkKeymap "n" "<C-CR>" "<cmd>lua vim.lsp.buf.code_action()<CR>")
       (mkKeymap "n" "<Leader>dn" "<cmd>lua vim.diagnostic.goto_next()<CR>")
@@ -23,6 +29,9 @@ in {
       (mkKeymap "n" "<Leader>xx" "<cmd>Trouble diagnostics toggle<CR>")
       (mkKeymap "n" "<Leader>lr" "<cmd>lua vim.lsp.buf.rename()<CR>")
       (mkKeymap "v" "<Leader>lr" "<cmd>lua vim.lsp.buf.rename()<CR>")
+
+      # mini.files
+      (mkKeymap "n" "<Leader>e" "<cmd>lua MiniFiles.open()<CR>")
     ];
   };
 }
