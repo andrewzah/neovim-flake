@@ -11,6 +11,21 @@
       ];
       mappings.findFiles = "<C-p>";
     };
+    navigation.harpoon.enable = true;
+
+    # todo: mnw issue
+    notes.orgmode = {
+      enable = false;
+      setupOpts = {
+        # org_default_notes_file = "/home/dragon/sync/thoughts/storage/org-mode/default.org";
+        # org_agenda_files = [
+        #   "/home/dragon/sync/thoughts/storage/org-mode/*"
+        # ];
+      };
+
+      # https://github.com/NotAShelf/nvf/issues/736
+      treesitter.enable = false;
+    };
 
     utility.preview.markdownPreview = {
       enable = true;

@@ -14,26 +14,12 @@ in {
   config.vim = {
     keymaps = [
       (mkKeymap "n" " " "<Nop>") # ??
+      (mkKeymap "n" "<CR>" ":noh<CR><CR>") # clear incsearch hl
+      (mkKeymap "n" "<tab>" "gt")
 
-      # color scheme
-      (mkKeymapLua "n" "<Leader>bdt" ''
-        function()
-          vim.cmd[[colorscheme tokyonight]]
-          vim.o.background = 'dark'
-        end
-      '')
-      (mkKeymapLua "n" "<Leader>bdg" ''
-        function()
-          vim.cmd[[colorscheme gruvbox]]
-          vim.o.background = 'dark'
-        end
-      '')
-      (mkKeymapLua "n" "<Leader>bl" ''
-        function()
-          vim.cmd([[colorscheme gruvbox]])
-          vim.o.background = 'light'
-        end
-      '')
+      # i already use ctrl-[, but let's see if either stick
+      (mkKeymap "i" "jk" "<Esc>")
+      (mkKeymap "i" "jh" "<Esc>")
 
       # keep at middle of screen after jump
       (mkKeymap "n" "<C-d>" "<C-d>zz")
@@ -56,6 +42,26 @@ in {
 
       # mini.files
       (mkKeymap "n" "<Leader>e" "<cmd>lua MiniFiles.open()<CR>")
+
+      # color scheme
+      (mkKeymapLua "n" "<Leader>bdt" ''
+        function()
+          vim.cmd[[colorscheme tokyonight]]
+          vim.o.background = 'dark'
+        end
+      '')
+      (mkKeymapLua "n" "<Leader>bdg" ''
+        function()
+          vim.cmd[[colorscheme gruvbox]]
+          vim.o.background = 'dark'
+        end
+      '')
+      (mkKeymapLua "n" "<Leader>bl" ''
+        function()
+          vim.cmd([[colorscheme gruvbox]])
+          vim.o.background = 'light'
+        end
+      '')
     ];
   };
 }
