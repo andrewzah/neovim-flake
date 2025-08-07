@@ -15,7 +15,7 @@ in {
     keymaps = [
       (mkKeymap "n" " " "<Nop>") # ??
       (mkKeymap "n" "<CR>" ":noh<CR><CR>") # clear incsearch hl
-      (mkKeymap "n" "<tab>" "gt")
+      (mkKeymap "n" "<tab>" "<C-w>w")
 
       # i already use ctrl-[, but let's see if either stick
       (mkKeymap "i" "jk" "<Esc>")
@@ -24,12 +24,6 @@ in {
       # keep at middle of screen after jump
       (mkKeymap "n" "<C-d>" "<C-d>zz")
       (mkKeymap "n" "<C-u>" "<C-u>zz")
-
-      # splits
-      (mkKeymap "n" "<C-h>" "<C-w>h")
-      (mkKeymap "n" "<C-j>" "<C-w>j")
-      (mkKeymap "n" "<C-k>" "<C-w>k")
-      (mkKeymap "n" "<C-l>" "<C-w>l")
 
       # diagnostics / LSP
       (mkKeymap "n" "<C-CR>" "<cmd>lua vim.lsp.buf.code_action()<CR>")
@@ -62,6 +56,12 @@ in {
           vim.o.background = 'light'
         end
       '')
+
+      # splits (rm due to harpoon)
+      # (mkKeymap "n" "<C-h>" "<C-w>h")
+      # (mkKeymap "n" "<C-j>" "<C-w>j")
+      # (mkKeymap "n" "<C-k>" "<C-w>k")
+      # (mkKeymap "n" "<C-l>" "<C-w>l")
     ];
   };
 }

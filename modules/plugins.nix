@@ -11,7 +11,15 @@
       ];
       mappings.findFiles = "<C-p>";
     };
-    navigation.harpoon.enable = true;
+    navigation.harpoon = {
+      enable = true;
+      mappings = {
+        file1 = "<C-j>";
+        file2 = "<C-k>";
+        file3 = "<C-l>";
+        file4 = "<C-;>";
+      };
+    };
 
     # todo: mnw issue
     notes.orgmode = {
