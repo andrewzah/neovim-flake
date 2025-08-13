@@ -54,7 +54,7 @@
       show_on_start = true;
     };
 
-    mini.pairs.enable = true;
+    #mini.pairs.enable = true;
     mini.files.enable = true;
   };
 }
