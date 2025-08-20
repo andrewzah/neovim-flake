@@ -114,6 +114,11 @@
       ts.format.type = "prettierd"; # https://github.com/NotAShelf/nvf/issues/943
       yaml.enable = true;
       yaml.lsp.enable = true;
+
+      zig.enable = true;
+      zig.dap.enable = true;
+      zig.lsp.enable = true;
+      zig.treesitter.enable = true;
     };
   };
 }
