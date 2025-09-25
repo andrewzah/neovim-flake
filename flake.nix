@@ -32,6 +32,20 @@
       };
     });
 
+    packages = forEachSystem (system: let
+      pkgs = import nixpkgs {inherit system;};
+
+      nvim =
+        (inputs.nvf.lib.neovimConfiguration {
+          inherit pkgs;
+          modules = [
+            ./modules/default.nix
+          ];
+        }).neovim;
+    in {
+      default = nvim;
+    });
+
     devShells = forEachSystem (system: let
       pkgs = import nixpkgs {inherit system;};
       nvim =
