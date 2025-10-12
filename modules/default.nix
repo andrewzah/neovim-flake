@@ -74,6 +74,7 @@
     visuals.nvim-cursorline.setupOpts.cursorword.enable = true;
     visuals.highlight-undo.enable = true;
 
+    editorconfig.enable = true;
     treesitter.enable = true;
 
     undoFile.enable = true;
