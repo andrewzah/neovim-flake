@@ -107,8 +107,11 @@
       nix.lsp.enable = true;
       ruby.enable = true;
       ruby.lsp.enable = true;
+
       rust.enable = true;
       rust.lsp.enable = true;
+      rust.lsp.package = ["rust-analyzer"]; # look at PATH
+
       ts.enable = true;
       ts.lsp.enable = true;
       ts.format.type = "prettierd"; # https://github.com/NotAShelf/nvf/issues/943
