@@ -14,9 +14,11 @@
 
   # https://neovim.io/doc/user/lsp.html
   # https://notashelf.github.io/nvf/options.html
+  # https://neovim.io/doc/user/plugins.html
   config.vim = {
     globals = {
       editorconfig = true;
+
       mapleader = " ";
       maplocalleader = ",";
       number = true;
@@ -73,8 +75,6 @@
     visuals.nvim-cursorline.enable = true;
     visuals.nvim-cursorline.setupOpts.cursorword.enable = true;
     visuals.highlight-undo.enable = true;
-
-    treesitter.enable = true;
 
     undoFile.enable = true;
     undoFile.path = lib.mkLuaInline "os.getenv('XDG_DATA_HOME') .. '/nvf/undo'";

@@ -1,6 +1,12 @@
-{...}: {
+{pkgs, ...}: {
   config.vim = {
-    treesitter.enable = true;
+    treesitter = {
+      enable = true;
+      grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+        gdscript
+        gdshader
+      ];
+    };
 
     autocomplete = {
       blink-cmp.enable = true;
