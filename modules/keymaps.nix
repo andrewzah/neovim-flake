@@ -37,7 +37,13 @@ in {
       # mini.files
       (mkKeymap "n" "<Leader>e" "<cmd>lua MiniFiles.open()<CR>")
 
-      # color scheme
+      # color schemes
+      (mkKeymapLua "n" "<Leader>bdb" ''
+        function()
+          vim.cmd[[colorscheme bluloco]]
+          vim.o.background = 'dark'
+        end
+      '')
       (mkKeymapLua "n" "<Leader>bdt" ''
         function()
           vim.cmd[[colorscheme tokyonight]]
@@ -50,9 +56,15 @@ in {
           vim.o.background = 'dark'
         end
       '')
-      (mkKeymapLua "n" "<Leader>bl" ''
+      (mkKeymapLua "n" "<Leader>blg" ''
         function()
           vim.cmd([[colorscheme gruvbox]])
+          vim.o.background = 'light'
+        end
+      '')
+      (mkKeymapLua "n" "<Leader>blb" ''
+        function()
+          vim.cmd([[colorscheme bluloco]])
           vim.o.background = 'light'
         end
       '')

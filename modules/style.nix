@@ -1,6 +1,52 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  inherit (pkgs.vimUtils) buildVimPlugin;
+
+  auto-dark-mode-nvim = buildVimPlugin {
+    pname = "auto-dark-mode.nvim";
+    version = "2025-08-04";
+    src = pkgs.fetchFromGitHub {
+      owner = "f-person";
+      repo = "auto-dark-mode.nvim";
+      rev = "e300259ec777a40b4b9e3c8e6ade203e78d15881";
+      hash = "sha256-PhhOlq4byctWJ5rLe3cifImH56vR2+k3BZGDZdQvjng=";
+    };
+    meta.homepage = "https://github.com/f-person/auto-dark-mode.nvim/";
+  };
+in {
   config.vim = {
     extraPlugins = {
+      auto-dark-mode-nvim = {
+        package = auto-dark-mode-nvim;
+        setup = ''
+          require("auto-dark-mode").setup({
+            set_dark_mode = function()
+                vim.api.nvim_set_option_value("background", "dark", {})
+                vim.cmd.colorscheme('tokyonight')
+            end,
+            set_light_mode = function()
+                vim.api.nvim_set_option_value("background", "light", {})
+                vim.cmd.colorscheme('bluloco')
+            end,
+            update_interval = 3000,
+            fallback = "dark"
+          })
+        '';
+      };
+
+      blueloco-nvim = {
+        package = pkgs.vimPlugins.bluloco-nvim;
+        setup = ''
+          require("bluloco").setup({
+            style = "auto",
+            transparent = false,
+            italics = false,
+            guicursor = true,
+            terminal = vim.fn.has("gui_running") == 1,
+            rainbow_headings = true,
+          })
+        '';
+      };
+
       gruvbox = {
         package = pkgs.vimPlugins.gruvbox-nvim;
         setup = ''
@@ -36,8 +82,8 @@
           require("tokyonight").setup({
             style = "night",
           })
-          vim.cmd[[colorscheme tokyonight]]
-          vim.o.background = "dark"
+          --vim.cmd[[colorscheme tokyonight]]
+          --vim.o.background = "dark"
         '';
       };
     };
