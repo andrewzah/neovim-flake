@@ -21,11 +21,11 @@ in {
           require("auto-dark-mode").setup({
             set_dark_mode = function()
                 vim.api.nvim_set_option_value("background", "dark", {})
-                vim.cmd.colorscheme('tokyonight')
+                vim.cmd.colorscheme('gruvbox')
             end,
             set_light_mode = function()
                 vim.api.nvim_set_option_value("background", "light", {})
-                vim.cmd.colorscheme('bluloco')
+                vim.cmd.colorscheme('modus')
             end,
             update_interval = 3000,
             fallback = "dark"
@@ -72,6 +72,24 @@ in {
             overrides = {},
             dim_inactive = false,
             transparent_mode = false,
+          })
+        '';
+      };
+
+      modus = {
+        package = pkgs.vimPlugins.modus-themes-nvim;
+        setup = ''
+          require("modus-themes").setup({
+            style = "auto",
+            variant = "default",
+            line_nr_column_background = true,
+            sign_column_background = true,
+            styles = {
+              comments = {italic = true },
+              keywords = {},
+              functions = {},
+              variables = {},
+            };
           })
         '';
       };

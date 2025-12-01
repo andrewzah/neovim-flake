@@ -38,9 +38,9 @@ in {
       (mkKeymap "n" "<Leader>e" "<cmd>lua MiniFiles.open()<CR>")
 
       # color schemes
-      (mkKeymapLua "n" "<Leader>bdb" ''
+      (mkKeymapLua "n" "<Leader>bdm" ''
         function()
-          vim.cmd[[colorscheme bluloco]]
+          vim.cmd[[colorscheme modus]]
           vim.o.background = 'dark'
         end
       '')
@@ -65,6 +65,12 @@ in {
       (mkKeymapLua "n" "<Leader>blb" ''
         function()
           vim.cmd([[colorscheme bluloco]])
+          vim.o.background = 'light'
+        end
+      '')
+      (mkKeymapLua "n" "<Leader>blm" ''
+        function()
+          vim.cmd([[colorscheme modus]])
           vim.o.background = 'light'
         end
       '')
