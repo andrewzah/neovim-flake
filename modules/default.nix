@@ -87,6 +87,10 @@
       bash.enable = true;
       bash.lsp.enable = true;
 
+      clojure.enable = true;
+      clojure.lsp.enable = true;
+      clojure.treesitter.enable = true;
+
       csharp.enable = true;
       csharp.lsp.enable = true;
       csharp.treesitter.enable = true;
