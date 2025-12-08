@@ -1,5 +1,54 @@
 {pkgs, ...}: {
   config.vim = {
+    languages = {
+      enableFormat = true;
+      enableTreesitter = true;
+      enableDAP = true;
+
+      bash.enable = true;
+      bash.lsp.enable = true;
+
+      clojure.enable = true;
+      clojure.lsp.enable = true;
+      clojure.treesitter.enable = true;
+
+      csharp.enable = true;
+      csharp.lsp.enable = true;
+      csharp.treesitter.enable = true;
+
+      css.enable = true;
+      css.format.type = "prettierd"; # https://github.com/NotAShelf/nvf/issues/943
+      gleam.enable = true;
+      go.enable = true;
+      go.lsp.enable = true;
+      haskell.enable = true;
+      html.enable = true;
+      java.enable = true;
+      lua.enable = true;
+      markdown.enable = true;
+      markdown.lsp.enable = true;
+      markdown.treesitter.enable = true;
+      nix.enable = true;
+      nix.lsp.enable = true;
+      ruby.enable = true;
+      ruby.lsp.enable = true;
+
+      rust.enable = true;
+      rust.lsp.enable = true;
+      rust.lsp.package = ["rust-analyzer"]; # look at PATH
+
+      ts.enable = true;
+      ts.lsp.enable = true;
+      ts.format.type = "prettierd"; # https://github.com/NotAShelf/nvf/issues/943
+      yaml.enable = true;
+      yaml.lsp.enable = true;
+
+      zig.enable = true;
+      zig.dap.enable = true;
+      zig.lsp.enable = true;
+      zig.treesitter.enable = true;
+    };
+
     treesitter = {
       enable = true;
       grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [

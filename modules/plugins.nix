@@ -35,24 +35,30 @@
       treesitter.enable = false;
     };
 
-    utility.preview.markdownPreview = {
-      enable = true;
-      lazyRefresh = true;
-    };
+    utility = {
+      preview.markdownPreview = {
+        enable = true;
+        lazyRefresh = true;
+      };
 
-    # highlights colors + color picker
-    # https://github.com/uga-rosa/ccc.nvim
-    utility.ccc.enable = true;
+      # highlights colors + color picker
+      # https://github.com/uga-rosa/ccc.nvim
+      ccc.enable = true;
+
+      nvim-biscuits.enable = false;
+      nvim-biscuits.setupOpts = {
+        min_length = 20;
+        cursor_line_only = true;
+        toggle_keybind = "<leader>vb";
+        show_on_start = true;
+      };
+
+      snacks-nvim.enable = true;
+      #snacks-nvim.setupOpts = { bigfile = {}; };
+    };
 
     # show the name of the current block at the end
     # https://github.com/code-biscuits/nvim-biscuits
-    utility.nvim-biscuits.enable = false;
-    utility.nvim-biscuits.setupOpts = {
-      min_length = 20;
-      cursor_line_only = true;
-      toggle_keybind = "<leader>vb";
-      show_on_start = true;
-    };
 
     #mini.pairs.enable = true;
     mini.files.enable = true;
