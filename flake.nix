@@ -16,7 +16,11 @@
         systems);
   in {
     apps = forEachSystem (system: let
-      pkgs = import nixpkgs {inherit system;};
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfreePredicate = pkg:
+          builtins.elem (nixpkgs.lib.getName pkg) ["claude-code"];
+      };
 
       nvim =
         (inputs.nvf.lib.neovimConfiguration {
@@ -33,7 +37,11 @@
     });
 
     packages = forEachSystem (system: let
-      pkgs = import nixpkgs {inherit system;};
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfreePredicate = pkg:
+          builtins.elem (nixpkgs.lib.getName pkg) ["claude-code"];
+      };
 
       nvim =
         (inputs.nvf.lib.neovimConfiguration {
@@ -47,7 +55,12 @@
     });
 
     devShells = forEachSystem (system: let
-      pkgs = import nixpkgs {inherit system;};
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfreePredicate = pkg:
+          builtins.elem (nixpkgs.lib.getName pkg) ["claude-code"];
+      };
+
       nvim =
         (inputs.nvf.lib.neovimConfiguration {
           inherit pkgs;
