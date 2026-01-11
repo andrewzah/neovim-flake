@@ -1,13 +1,6 @@
 {pkgs, ...}: {
   config.vim = {
     extraPlugins = {
-      claudecode-nvim = {
-        package = pkgs.vimPlugins.claudecode-nvim;
-        setup = ''
-          require("claudecode").setup({})
-        '';
-      };
-
       nvim-parinfer.package = pkgs.vimPlugins.nvim-parinfer;
     };
 

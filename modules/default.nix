@@ -16,8 +16,6 @@
   # https://notashelf.github.io/nvf/options.html
   # https://neovim.io/doc/user/plugins.html
   config.vim = {
-    extraPackages = with pkgs; [claude-code];
-
     globals = {
       editorconfig = true;
 

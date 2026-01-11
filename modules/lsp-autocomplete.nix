@@ -1,5 +1,24 @@
 {pkgs, ...}: {
   config.vim = {
+    ## godot: gdscript LSP on :6005
+    luaConfigPost = ''
+      local lspconfig = require('lspconfig')
+      local util = require('lspconfig.util')
+
+      local function is_godot_project()
+        local cwd = vim.fn.getcwd()
+        return vim.fn.filereadable(cwd .. '/project.godot') == 1
+      end
+
+      if is_godot_project() then
+        lspconfig.gdscript.setup({
+          cmd = {'nc', 'localhost', '6005'},
+          root_dir = util.root_pattern('project.godot', '.git'),
+          filetypes = {'gd', 'gdscript'},
+        })
+      end
+    '';
+
     languages = {
       enableFormat = true;
       enableTreesitter = true;
@@ -15,6 +34,8 @@
       csharp.enable = true;
       csharp.lsp.enable = true;
       csharp.treesitter.enable = true;
+      #csharp.lsp.servers = ["omnisharp" "csharp_ls"];
+      csharp.lsp.servers = ["omnisharp"];
 
       css.enable = true;
       css.format.type = "prettierd"; # https://github.com/NotAShelf/nvf/issues/943
@@ -54,6 +75,7 @@
       grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
         gdscript
         gdshader
+        godot-resource
       ];
     };
 
@@ -79,7 +101,6 @@
       mappings = {
         goToDefinition = "gd";
       };
-
       trouble.enable = true;
     };
 
