@@ -72,6 +72,7 @@
 
     treesitter = {
       enable = true;
+      indent.enable = false;
       grammars = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
         gdscript
         gdshader
